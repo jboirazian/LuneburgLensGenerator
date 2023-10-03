@@ -1,4 +1,12 @@
+### Generated model:
+
+![lunv1-1](https://github.com/jboirazian/LuneburgLensGenerator/assets/21143405/16601dfd-99a9-4fe4-98d7-f734cece412a)
+![lunv1-2](https://github.com/jboirazian/LuneburgLensGenerator/assets/21143405/ec67ed3b-37c9-4e6f-af36-0a829b400c8c)
+![lunv1-3](https://github.com/jboirazian/LuneburgLensGenerator/assets/21143405/f93634b0-5313-43e4-8cb5-a31ae6ba9cfc)
+
+
 ### Best itereations:
+
 
     square_hole_size = 0.4
     radius = 1.0
