@@ -37,12 +37,19 @@ If you want to print this lens , keep in mind to use 100% infill when printing t
 
 ## Our results:
 
-Before printing 
+Before printing we runned some simulations in CST Studio and confirmed that there was a substantial increase in gain and directivity with our Lens
+
+![cst1](https://github.com/jboirazian/LuneburgLensGenerator/blob/main/imgs/cst1.jpeg)
+
+![cst2](https://github.com/jboirazian/LuneburgLensGenerator/blob/main/imgs/cst2.jpeg)
 
 
 We were able to run multiple tests in our setup with VNA and 2 horn antennas (one as a transmitter and one as a reciver) and we successfully confimed our Simulations in CST Studio. We dramatically saw a gain in the S12 and S21 parameters of 6 db and more directivity in the beam
 
-
+![lens1](https://github.com/jboirazian/LuneburgLensGenerator/blob/main/imgs/lens-1.jpeg)
+![lens2](https://github.com/jboirazian/LuneburgLensGenerator/blob/main/imgs/lens-2.jpeg)
+![lens3](https://github.com/jboirazian/LuneburgLensGenerator/blob/main/imgs/lens-3.jpeg)
+![lens4](https://github.com/jboirazian/LuneburgLensGenerator/blob/main/imgs/lens-4.jpeg)
 
 
 
