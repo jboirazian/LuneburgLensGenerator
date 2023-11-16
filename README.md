@@ -12,11 +12,11 @@ You will need [Docker](https://www.docker.com/) for this project.
 
 clone the project , then :
 
-    docker build -t pymesh-test .
+    docker build -t Luneburg-gen .
 
 Then:
 
-    docker run -v "$(pwd)":/app -w /app pymesh-test
+    docker run -v "$(pwd)":/app -w /app Luneburg-gen
 
 
 # Example of use:
