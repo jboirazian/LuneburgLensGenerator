@@ -21,7 +21,7 @@ Then:
 
 # Example of use:
 
-We designed and builded a Luneburg Lens that operated in Band X (8-12 Ghz). We also wanted to use a commercial FMD 3D printer and PLA filament.
+We designed and builded a Luneburg Lens that operated in Band X (8-12 Ghz). We also wanted to use a commercial FDM 3D printer and PLA filament.
 
 Our design parameters were the following:
 
