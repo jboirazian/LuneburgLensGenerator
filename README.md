@@ -5,6 +5,8 @@ Python script for generating a Luneburg Lens programatically without the use of 
 
 This program was developed for the subject "Medidas electronicas 2" for the UTN FRBA university in the year 2023.
 
+For more information check our [white paper](https://github.com/jboirazian/LuneburgLensGenerator/blob/main/white-paper.pdf)
+
 
 ## How to run it:
 
@@ -34,6 +36,7 @@ Our design parameters were the following:
 
 If you want to print this lens , keep in mind to use 100% infill when printing the lens.
 
+You can find this lens on the [Releases section](https://github.com/jboirazian/LuneburgLensGenerator/releases/tag/v1)
 
 ## Our results:
 
