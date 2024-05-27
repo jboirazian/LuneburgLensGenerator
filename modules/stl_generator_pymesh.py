@@ -2,6 +2,7 @@ import numpy as np
 import pymesh
 
 
+
 def add_square_holes(sphere:pymesh.Mesh,holes:list):
     """
     Add square holes to the Lunenburg lens, going through the entire object.
@@ -63,6 +64,13 @@ def generate_cylinder(L, R, resolution=100):
     cylinder = pymesh.generate_cylinder(R, L, resolution)
     
     return pymesh.form_mesh(cylinder.vertices, cylinder.faces)
+
+
+def fuse_models(models:list):
+    fused_models=models[0]
+    for model in models:
+        fused_models=pymesh.boolean(fused_models, model, operation="union")
+    return fused_models
 
 
 

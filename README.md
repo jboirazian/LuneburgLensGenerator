@@ -14,11 +14,11 @@ You will need [Docker](https://www.docker.com/) for this project.
 
 clone the project , then :
 
-    docker build -t Luneburg-gen .
+    docker build -t luneburg-gen .
 
 Then:
 
-    docker run -v "$(pwd)":/app -w /app Luneburg-gen
+    docker run -v "$(pwd)":/app -w /app luneburg-gen
 
 
 # Example of use:
