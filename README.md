@@ -14,7 +14,7 @@ You will need [Docker](https://www.docker.com/) for this project.
 
 clone the project , then :
 
-    docker build -t luneburg-gen .
+    docker build --rm -t luneburg-gen .
 
 Then:
 

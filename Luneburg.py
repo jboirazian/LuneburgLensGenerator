@@ -3,18 +3,27 @@ import numpy as np
 import modules.unit_cells as unit_cells
 
 if __name__ == "__main__":
-
-
-    k=100 ## Scale factor (in mm)
-    radius = 1.0 ## Unscaled sphere radious (in mm)
-    square_hole_size = 0.2 ## Square hole size lenght (in mm)
-    diameter = radius*2
-    resolution = 4 ## sphere resolution (4 is fine , for highier resolution increase it , keeping in mind that it will increase the .stl model size)
-    step = diameter/16 ## square holes resolution (in mm)
-
+    k=10 ## Scale factor (in mm)
     print("Started process...")
     # Generate the sphere mesh
-    model= unit_cells.generate_sphere_unit_cell()
+    models=[]
+    size=10
+    # Optimize the nested loop with list comprehension
+    models = tuple(
+        unit_cells.generate_cubic_unit_cell(
+            cubic_center=[x + 0.1 * x, y + 0.1 * y, z + 0.1 * z],
+            support_length=0.1,
+            cube_side_length=1
+        )
+        for z in range(size)
+        for y in range(size)
+        for x in range(size)
+    )
+
+    # Fuse the models
+    print("Fusing all unit cells")
+    model = stl_gen.fuse_models(models=models)
+
 
     model_scaled=stl_gen.scale_model(mesh=model,scale_factor=k)
 

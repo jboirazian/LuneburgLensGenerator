@@ -1,5 +1,7 @@
 import numpy as np
 import pymesh
+from functools import reduce
+import click
 
 
 
@@ -23,7 +25,7 @@ def add_square_holes(sphere:pymesh.Mesh,holes:list):
         y=hole_position[1]
         z=hole_position[2]
         
-        square_hole_mesh=generate_prism(L=z,A=hole_size,xy_positon=[x,y])
+        square_hole_mesh=generate_prism_xy(L=z,A=hole_size,xy_positon=[x,y])
 
 
         sphere=pymesh.boolean(sphere, square_hole_mesh, operation="difference")
@@ -68,10 +70,11 @@ def generate_cylinder(L, R, resolution=100):
 
 def fuse_models(models:list):
     fused_models=models[0]
-    for model in models:
-        fused_models=pymesh.boolean(fused_models, model, operation="union")
-    return fused_models
-
+    with click.progressbar(length=len(models),show_pos=True) as bar:
+        for model in models:
+            fused_models=pymesh.boolean(fused_models, model, operation="union")
+            bar.update(1)
+        return fused_models
 
 
 def scale_model(mesh,scale_factor):
@@ -90,12 +93,12 @@ def scale_model(mesh,scale_factor):
 
 
 def add_square_hole_to_mesh(mesh,A,L,xy_position):
-    square_hole_mesh=generate_prism(L=L,A=A,xy_positon=xy_position)
+    square_hole_mesh=generate_prism_xy(L=L,A=A,xy_positon=xy_position)
     mesh=pymesh.boolean(mesh, square_hole_mesh, operation="difference")
     return mesh
 
 
-def generate_prism(L, A, num_samples=1, subdiv_order=0, xy_positon=[0,0]):
+def generate_prism_xy(L, A, num_samples=1, subdiv_order=0, xy_positon=[0,0]):
     """
     Generate a 3D prism with a square face using PyMesh.
 
@@ -124,6 +127,38 @@ def generate_prism(L, A, num_samples=1, subdiv_order=0, xy_positon=[0,0]):
     prism = pymesh.generate_box_mesh(box_min, box_max, num_samples, subdiv_order)
     
     return prism
+
+
+def generate_prism(L, A, num_samples=1, subdiv_order=0, xyz_position=[0, 0, 0]):
+    """
+    Generate a 3D prism with a square face using PyMesh.
+
+    Args:
+        L (float): Length of the prism.
+        A (float): Area of the square face.
+        num_samples (int): Number of segments on each edge of the box.
+        subdiv_order (int): The subdivision order.
+        xyz_position (list of float): Coordinates of the position [x, y, z].
+
+    Returns:
+        PyMesh.Mesh: The generated prism mesh.
+    """
+    
+    x, y, z = xyz_position
+
+    # Calculate the side length of the square face
+    side_length = (A)
+    
+    # Define the min and max corners of the box
+    box_min = np.array([x - side_length / 2, y - side_length / 2, z - L / 2])
+    box_max = np.array([x + side_length / 2, y + side_length / 2, z + L / 2])
+    
+    # Create the prism
+    prism = pymesh.generate_box_mesh(box_min, box_max, num_samples, subdiv_order)
+    
+    return prism
+
+
 
 
 def export_to_stl(mesh, filename):
