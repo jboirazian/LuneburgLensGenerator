@@ -68,6 +68,10 @@ def generate_cylinder(L, R, resolution=100):
     return pymesh.form_mesh(cylinder.vertices, cylinder.faces)
 
 
+
+def merge_models(models:list):
+    return pymesh.merge_meshes(models)
+
 def fuse_models(models:list):
     fused_models=models[0]
     with click.progressbar(length=len(models),show_pos=True) as bar:
@@ -75,6 +79,14 @@ def fuse_models(models:list):
             fused_models=pymesh.boolean(fused_models, model, operation="union")
             bar.update(1)
         return fused_models
+
+def intersect_models(models:list):
+    intersection_models=models[0]
+    with click.progressbar(length=len(models),show_pos=True) as bar:
+        for model in models:
+            intersection_models=pymesh.boolean(intersection_models, model, operation="intersection")
+            bar.update(1)
+        return intersection_models
 
 
 def scale_model(mesh,scale_factor):

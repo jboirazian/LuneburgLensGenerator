@@ -14,7 +14,8 @@
     model = stl_gen.fuse_models(models=models)
 
 
-3x3x3 2.458
-4x4x4 7.559
-5x5x5 24.676
-10x10x10 35m28,288s
+3x3x3 =  2.458s
+4x4x4 = 64 ucells -> 7.559s , 0,117 cells/s
+5x5x5 = 125 -> 24.676s , 0,197 cells/s
+7x7x7 =     -> 4m7s
+10x10x10 = 1000 ucells -> 35m28,288s , 2,18 cells/s
