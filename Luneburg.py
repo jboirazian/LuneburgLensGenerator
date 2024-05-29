@@ -7,7 +7,7 @@ if __name__ == "__main__":
     print("Started process...")
     # Generate the sphere mesh
     models=[]
-    size=30
+    size=1
     support_length=0.1
     # Optimize the nested loop with list comprehension
     models = tuple(
