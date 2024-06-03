@@ -34,7 +34,7 @@ def add_square_holes(sphere:pymesh.Mesh,holes:list):
 
 
 
-def generate_sphere(radius, resolution=16):
+def generate_sphere(radius, resolution=16,center=[0,0,0]):
     """
     Generate a 3D solid sphere using PyMesh.
 
@@ -46,7 +46,7 @@ def generate_sphere(radius, resolution=16):
     Returns:
         PyMesh.Mesh: The generated sphere mesh.
     """
-    sphere = pymesh.generate_icosphere(radius, np.array([0, 0, 0]), resolution)
+    sphere = pymesh.generate_icosphere(radius, np.array(center), resolution)
     return pymesh.form_mesh(sphere.vertices, sphere.faces)
 
 

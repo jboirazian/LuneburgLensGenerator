@@ -24,19 +24,22 @@ def generate_cubic_unit_cell(cubic_center:list=[0,0,0],support_length:int=0,cube
 
 
 
-# def generate_sphere_unit_cell(sphere_center:list[0,0,0],support_length:int=0,sphere_radius:int=0):
-#     ### Unit cell based of the "A Highly Efficient Energy Harvesting Circuit Using Luneburg Lens"
-#     ### you will find it in docs folder
+def generate_sphere_unit_cell(sphere_center:list=[0,0,0],support_length:int=0,sphere_radius:int=0):
+    ### Unit cell based of the "A Highly Efficient Energy Harvesting Circuit Using Luneburg Lens"
+    ### you will find it in docs folder
 
-#     ### Make the initial center sphere
-#     sphere= stl_gen.generate_sphere(radius=sphere_radius,resolution=4)
-#     models=[sphere]
-#     ### Then make all the 6 joints
-#     models.append(stl_gen.generate_prism(L=0.1,A=0.1,xyz_position=[1,0,0]))
-#     models.append(stl_gen.generate_prism(L=0.1,A=0.1,xyz_position=[-1,0,0]))
-#     models.append(stl_gen.generate_prism(L=0.1,A=0.1,xyz_position=[0,1,0]))
-#     models.append(stl_gen.generate_prism(L=0.1,A=0.1,xyz_position=[0,-1,0]))
-#     models.append(stl_gen.generate_prism(L=0.1,A=0.1,xyz_position=[0,0,-1]))
-#     models.append(stl_gen.generate_prism(L=0.1,A=0.1,xyz_position=[0,0,1]))
+    ### Make the initial center sphere
+    sphere= stl_gen.generate_sphere(radius=sphere_radius,resolution=2,center=sphere_center)
+    models=[sphere]
+    ### Then make all the 6 joints
+    models.append(stl_gen.generate_prism(L=support_length,A=support_length,xyz_position=[sphere_center[0]+sphere_radius,sphere_center[1],sphere_center[2]]))
+    models.append(stl_gen.generate_prism(L=support_length,A=support_length,xyz_position=[sphere_center[0]-sphere_radius,sphere_center[1],sphere_center[2]]))
+    models.append(stl_gen.generate_prism(L=support_length,A=support_length,xyz_position=[sphere_center[0],sphere_center[1]+sphere_radius,sphere_center[2]]))
+    models.append(stl_gen.generate_prism(L=support_length,A=support_length,xyz_position=[sphere_center[0],sphere_center[1]-sphere_radius,sphere_center[2]]))
+    models.append(stl_gen.generate_prism(L=support_length,A=support_length,xyz_position=[sphere_center[0],sphere_center[1],sphere_center[2]+sphere_radius]))
+    models.append(stl_gen.generate_prism(L=support_length,A=support_length,xyz_position=[sphere_center[0],sphere_center[1],sphere_center[2]-sphere_radius]))
 
-#     return stl_gen.fuse_models(models=models)
+    print(f"Generating cell at {sphere_center}")
+    unit_cell=stl_gen.merge_models(models=models)
+    print(f"Done!")
+    return unit_cell
