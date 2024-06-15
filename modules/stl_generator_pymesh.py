@@ -141,7 +141,7 @@ def generate_prism_xy(L, A, num_samples=1, subdiv_order=0, xy_positon=[0,0]):
     return prism
 
 
-def generate_prism(L, A, num_samples=1, subdiv_order=0, xyz_position=[0, 0, 0]):
+def generate_prism(x_lenght:float,y_lenght:float,z_lenght:float, num_samples=1, subdiv_order=0, xyz_position=[0, 0, 0]):
     """
     Generate a 3D prism with a square face using PyMesh.
 
@@ -157,13 +157,10 @@ def generate_prism(L, A, num_samples=1, subdiv_order=0, xyz_position=[0, 0, 0]):
     """
     
     x, y, z = xyz_position
-
-    # Calculate the side length of the square face
-    side_length = (A)
     
     # Define the min and max corners of the box
-    box_min = np.array([x - side_length / 2, y - side_length / 2, z - L / 2])
-    box_max = np.array([x + side_length / 2, y + side_length / 2, z + L / 2])
+    box_min = np.array([x - x_lenght / 2, y - y_lenght / 2, z - z_lenght / 2])
+    box_max = np.array([x + x_lenght / 2, y + y_lenght / 2, z + z_lenght / 2])
     
     # Create the prism
     prism = pymesh.generate_box_mesh(box_min, box_max, num_samples, subdiv_order)

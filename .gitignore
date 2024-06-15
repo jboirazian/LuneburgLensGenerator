@@ -1,2 +1,3 @@
 *.stl
 modules/__pycache__
+*.csv
