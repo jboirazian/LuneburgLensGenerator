@@ -11,10 +11,11 @@ if __name__ == "__main__":
     models=[]
     cube_side_length=0.6
     support_length=0.2
-    sphere_radius=5
+    sphere_radius=6
     size=sphere_radius*2
 
     models = []
+    half_models=[]
 
     for z in np.arange(-size/2, size/2, cube_side_length):
         for y in np.arange(-size/2, size/2, cube_side_length):
@@ -28,6 +29,9 @@ if __name__ == "__main__":
                         support_side_length=cube_side_length
                     )
                     models.append(model)
+                    if(x>=0):
+                        half_models.append(model)
+
 
 
     # Fuse the models
@@ -37,10 +41,12 @@ if __name__ == "__main__":
 
     stl_gen.export_to_stl(mesh=model_scaled,filename=f"{filename}.stl")
 
-    ## Cut model in half to get better cross view
-    half_model=stl_gen.merge_models(models=models[0:round(len(models)/3)])
-    model_scaled=stl_gen.scale_model(mesh=half_model,scale_factor=k) 
-    stl_gen.export_to_stl(mesh=model_scaled,filename=f"{filename}_cross.stl")
+    # Fuse the half models to get a cross view
+    half_model = stl_gen.merge_models(models=half_models)
+
+    half_model_scaled=stl_gen.scale_model(mesh=half_model,scale_factor=k)
+
+    stl_gen.export_to_stl(mesh=half_model_scaled,filename=f"{filename}_cross.stl")
 
     ## Get STL model of unit cells from center and periphery
     stl_gen.export_to_stl(mesh=models[round(len(models)/3)],filename=f"{filename}_unit_cell_center.stl")

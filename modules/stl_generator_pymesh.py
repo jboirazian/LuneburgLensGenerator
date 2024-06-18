@@ -180,3 +180,27 @@ def export_to_stl(mesh, filename):
     """
     pymesh.save_mesh(filename, mesh)
 
+
+
+def cut_mesh_in_half(mesh, axis='x'):
+    """
+    Cuts a mesh in half along the specified axis (default is x-axis).
+    
+    Returns:
+    - cut_mesh: The cut mesh object.
+    """
+    
+    # Define the cutting plane direction based on the specified axis
+    if axis == 'x':
+        direction = np.array([1.0, 0.0, 0.0])
+    elif axis == 'y':
+        direction = np.array([0.0, 1.0, 0.0])
+    elif axis == 'z':
+        direction = np.array([0.0, 0.0, 1.0])
+    else:
+        raise ValueError("Invalid axis specified. Choose from 'x', 'y', or 'z'.")
+    
+    # Slice the mesh into 2 parts along the specified direction
+    slices = pymesh.slice_mesh(mesh, direction, 2)
+
+    return slices[0]
