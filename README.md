@@ -7,6 +7,9 @@ This program was developed for the subject "Medidas electronicas 2" for the UTN 
 
 For more information check our [white paper](https://github.com/jboirazian/LuneburgLensGenerator/blob/main/white-paper.pdf)
 
+> [!NOTE]  
+> This project is a precursor to [LuneForge](https://github.com/jboirazian/LuneForge)
+
 
 ## How to run it:
 
